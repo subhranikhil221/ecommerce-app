@@ -1,0 +1,62 @@
+openapi: "3.0.0"  #versionj of an api using by swagger
+info:   #server info and other operators info also project summary and details
+  title: e-commerce site
+  description: nikhil- a website
+  version: 1.1.0
+  contact:
+    email: subhrajeetpandey290928632647@gmail.com
+    url: "https://swaggerapistandard"
+
+# servers:
+#   - url: "https://localhost:4000/api/v1"
+#     description: nikhil- a cousre segment is written by him
+#   - url: "https://localhost:4000/api/v1"
+#     description: nikhil- a cousre segment is written by him
+
+servers:
+  - url: "{protocol}://localhost:4000/api/{version}"
+    description: nikhil- a cousre segment is written by him
+    variables:
+      version:
+        enum:
+          - v1
+          - v2
+        default: v1  
+      protocol:
+        enum:
+          - http
+          - https
+        default: http
+#we can make a authenication tab here using the components
+components:
+  securitySchemes:           #making of an authorization tab here
+    cookieAuth:
+      type: apikey
+      in: cookie
+      name: token
+      BearerAuth:
+      type: http
+      scheme: bearer
+      in: cookie
+      name: token
+
+#getting vlaue from the data using http methods like get post
+paths:
+  /dummy:
+    get:
+      tags:
+        - Home
+      summary: returns a greet msg from site
+      responses:
+        200:
+          description: all good sucess
+          content:
+            application/json:
+              schema:
+                type: string 
+                example: "this is my string"      
+        400:
+          description: bad request   
+        500:
+          description: bad one    
+          
