@@ -39,10 +39,18 @@ const user = require("./routes/user");
 //@ importing product route from route.js
 const product = require("./routes/productroute");
 
+//@ importing the payment route here
+const payment = require("./routes/payment");
+
+//@ importing the order route here
+const order = require("./routes/order");
+
 //router middleware for rejoing the  functions we are broken down into
 app.use("/api/v1", home);
 app.use("/api/v1", user);
 app.use("/api/v1", product);
+app.use("/api/v1", payment);
+app.use("/api/v1", order);
 
 //$signup test
 app.get("/signuptest", (req, res) => {

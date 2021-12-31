@@ -39,6 +39,11 @@ const productSchema = new mongoose.Schema({
             message: "please select caagory from the product list provide above",
         },
     },
+
+    stock: {
+        type: Number,
+        required: [true, "plss...add a number in stock "],
+    },
     brand: {
         type: String,
         required: [true, "please provide the product brand"],

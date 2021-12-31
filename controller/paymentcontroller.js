@@ -23,7 +23,7 @@ exports.captureStripePayment = BigPromise(async(req, res, next) => {
         metadata: { integration_check: "accept_a_payment" },
     });
 
-    //$ this is the paymentintent response sends after sucessfull payment
+    //# this is the paymentintent response sends after successfull  payment
     res.status(200).json({
         success: true,
         amount: req.body.amount,
@@ -32,12 +32,14 @@ exports.captureStripePayment = BigPromise(async(req, res, next) => {
     });
 });
 
+//# sends the razorpaykey
 exports.sendRazorpayKey = BigPromise(async(req, res, next) => {
     res.status(200).json({
         razorpaykey: process.env.RAZORPAY_API_KEY,
     });
 });
 
+//# capturing the razorpay payment after orderong something
 exports.captureRazorpayPayment = BigPromise(async(req, res, next) => {
     var instance = new Razorpay({
         key_id: process.env.RAZORPAY_API_KEY,
@@ -47,6 +49,7 @@ exports.captureRazorpayPayment = BigPromise(async(req, res, next) => {
     var options = {
         amount: req.body.amount, // amount in the smallest currency unit
         currency: "INR",
+        // receipt:  this may be printed after the instructions of successful payment here
     };
     const myOrder = await instance.orders.create(options);
 
